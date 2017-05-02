@@ -3,12 +3,18 @@
 using namespace std;
 
 // RMSE function
-float stat_rmse(float *x, float *y, int N) {
+float stat_rmse(float *x, float *y, int N, float missing) {
+  int count = 0;
   float total = 0.0;
   for (int i = 0; i < N; i++) {
-    total = total+pow(x[i]-y[i], 2);
+    if (x[i] != missing && y[i] != missing) {
+      total = total+pow(x[i]-y[i], 2);
+      count++;
+    }
   }
-  return sqrt(total/(float)N);
+
+  cout << "Number of non-missing data = " << count << " of " << N << endl;
+  return sqrt(total/(float)count);
 }
 
 // main function
@@ -32,8 +38,8 @@ int main() {
   }
 
   // calculate RMSE
-  float rmse = stat_rmse(x, y, N);
+  float rmse = stat_rmse(x, y, N, -99.0);
   cout << "Calculated RMSE value = " << rmse << endl;
-  cout<<"ho ho"<<;
+
   return 0;
 }
