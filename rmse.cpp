@@ -34,6 +34,6 @@ int main() {
   // calculate RMSE
   float rmse = stat_rmse(x, y, N);
   cout << "Calculated RMSE value = " << rmse << endl;
-
+  cout<<"ho ho"<<;
   return 0;
 }
